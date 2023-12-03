@@ -10,5 +10,5 @@ task = Table(
     Column("id", Integer, primary_key=True),
     Column("task_name", String, nullable=False),
     Column("status", Boolean, nullable=False, default=False),
-    Column("created_at", TIMESTAMP, datetime.utcnow())
+    Column("created_at", TIMESTAMP, default=datetime.utcnow())
 )
