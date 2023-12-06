@@ -9,6 +9,6 @@ task = Table(
     metadata,
     Column("id", Integer, primary_key=True),
     Column("task_name", String, nullable=False),
-    Column("status", Boolean, nullable=False, default=False),
+    Column("status", Boolean, default=False, nullable=False),
     Column("created_at", TIMESTAMP, default=datetime.utcnow())
 )
