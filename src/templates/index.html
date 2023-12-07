@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div style="margin-top: 50px;" class="ui container">
+
+    <h1 class="ui center aligned header blue">{{ app_name }}</h1>
+
+    <form class="ui form" action="{{ url_for('create_task') }}" METHOD="post">
+        <h3 class="ui center aligned header green">Manage your time yo</h3>
+        <div class="field">
+            <label>New task</label>
+            <input type="text" name="new_task" placeholder="input task name"><br>
+        </div>
+        <button class="ui teal basic button" type="submit">Add</button>
+    </form>
+
+    {% for todo in todo_list %}
+
+    <div class="ui segment">
+        <p class="ui big header">{{ todo.task_name}}</p>
+
+        {% if todo.status == False %}
+        <span class="ui gray label">In process</span>
+        <a class="ui primary basic button" href="{{ url_for('update_task', task_id=todo.id) }}">Done</a>
+        <span class="ui blue label">{{ todo.created_at.strftime('%B %d %Y - %H:%M') }}</span>
+        {% else %}
+        <span class="ui green label">Done</span>
+        <a class="ui button blue" href="{{ url_for('update_task', task_id=todo.id) }}">Start</a>
+        <a class="ui negative basic button" href="{{ url_for('delete_task', task_id=todo.id) }}">Delete</a>
+        <span class="ui blue label">{{ todo.created_at.strftime('%B %d %Y - %H:%M') }}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
